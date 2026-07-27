@@ -21,12 +21,8 @@ use App\Http\Controllers\BlogController;
 
 Route::get('/blog', [BlogController::class, 'index']);
 
-use App\Models\Produk;
 
-Route::get('/produk', function () {
-    // Ambil semua data dari tabel produks
-    $semua_produk = Produk::all(); 
-    
-    // Kirim data ke file view bernama 'produk.blade.php'
-    return view('produk', compact('semua_produk'));
-});
+use App\Http\Controllers\ProdukController;
+
+Route::get('/produk', [ProdukController::class, 'index'])
+    ->middleware('auth');
